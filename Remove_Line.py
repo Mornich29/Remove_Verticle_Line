@@ -32,4 +32,7 @@ remove_line_img_2d = inpaint_biharmonic(img_2d, mask_bl)
 # Change back into 3d shape.
 remove_line_img = np.stack((remove_line_img_2d, remove_line_img_2d, remove_line_img_2d), axis=-1)
 
+# Change type from float to int8 before save
+remove_line_img = (remove_line_img * 255).astype(np.uint8)
+
 io.imsave('withoutline.jpg', remove_line_img)
